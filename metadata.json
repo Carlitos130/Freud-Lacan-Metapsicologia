@@ -1,0 +1,8 @@
+{
+  "name": "Remix Psicoanálisis Freud \u0026 Lacan",
+  "description": "Explorador conceptual interactivo y chatbot especializado en la teoría psicoanalítica de Sigmund Freud y Jacques Lacan con textos fuente, rigor terminológico y etimologías originales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
