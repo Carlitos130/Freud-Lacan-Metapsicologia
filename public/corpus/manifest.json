@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": "freud-aus-den-anfaengen-der-psychoanalyse",
+    "title": "Aus den Anfängen der Psychoanalyse: Briefe an Wilhelm Fliess (1887-1902)",
+    "author": "Sigmund Freud",
+    "sourceReference": "Briefe an Wilhelm Fliess, Abhandlungen und Notizen aus den Jahren 1887-1902 (incl. Entwurf einer Psychologie, 1895). Imago Publishing Co., Ltd., London, 1950",
+    "language": "german",
+    "file": "freud/freud-aus-den-anfaengen-der-psychoanalyse-briefe-fliess.txt"
+  },
+  {
+    "id": "freud-gw-band-i",
+    "title": "Gesammelte Werke, Band I: Werke aus den Jahren 1892-1899",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Erster Band. Imago Publishing Co., Ltd., London, 1952",
+    "language": "german",
+    "file": "freud/freud-gw-band-i.txt"
+  },
+  {
+    "id": "freud-gw-band-ii-iii",
+    "title": "Gesammelte Werke, Band II/III: Die Traumdeutung / Über den Traum",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Zweiter und Dritter Band. Imago Publishing Co., Ltd., London",
+    "language": "german",
+    "file": "freud/freud-gw-band-ii-iii.txt"
+  },
+  {
+    "id": "freud-gesammelte-schriften-band-iii",
+    "title": "Gesammelte Schriften, Dritter Band: Ergänzungen u. Zusatzkapitel zur Traumdeutung",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Schriften (edición de 1924-1934, ed. A. J. Storfer), Dritter Band — no confundir con las Gesammelte Werke (1940-1968). Internationaler Psychoanalytischer Verlag, Leipzig/Wien/Zürich",
+    "language": "german",
+    "file": "freud/freud-gesammelte-schriften-band-iii.txt"
+  },
+  {
+    "id": "freud-gw-band-iv",
+    "title": "Gesammelte Werke, Band IV",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Vierter Band. Imago Publishing Co., Ltd., London",
+    "language": "german",
+    "file": "freud/freud-gw-band-iv.txt"
+  }
+]
