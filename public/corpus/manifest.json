@@ -1,5 +1,45 @@
 [
   {
+    "id": "lacan-seminaire-01",
+    "title": "Le Séminaire I: Les écrits techniques de Freud (1953-1954)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-01-les-ecrits-techniques-de-freud.md"
+  },
+  {
+    "id": "lacan-seminaire-02",
+    "title": "Le Séminaire II: Le moi dans la théorie de Freud et dans la technique de la psychanalyse (1954-1955)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-02-le-moi.md"
+  },
+  {
+    "id": "lacan-seminaire-03",
+    "title": "Le Séminaire III: Les psychoses (1955-1956)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-03-les-psychoses.md"
+  },
+  {
+    "id": "lacan-seminaire-04",
+    "title": "Le Séminaire IV: La relation d'objet (1956-1957)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-04-la-relation-dobjet.md"
+  },
+  {
+    "id": "lacan-seminaire-05",
+    "title": "Le Séminaire V: Les formations de l'inconscient (1957-1958)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-05-les-formations-de-linconscient.md"
+  },
+  {
     "id": "freud-aus-den-anfaengen-der-psychoanalyse",
     "title": "Aus den Anfängen der Psychoanalyse: Briefe an Wilhelm Fliess (1887-1902)",
     "author": "Sigmund Freud",
