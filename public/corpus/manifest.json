@@ -86,5 +86,37 @@
     "sourceReference": "Gesammelte Werke, Vierzehnter Band. Imago Publishing Co., Ltd., London, 1948",
     "language": "german",
     "file": "freud/freud-gw-band-xiv.txt"
+  },
+  {
+    "id": "freud-gw-band-xv",
+    "title": "Gesammelte Werke, Band XV: Neue Folge der Vorlesungen zur Einführung in die Psychoanalyse",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Fünfzehnter Band. Imago Publishing Co., Ltd., London, 1940",
+    "language": "german",
+    "file": "freud/freud-gw-band-xv.txt"
+  },
+  {
+    "id": "freud-gw-band-xvi",
+    "title": "Gesammelte Werke, Band XVI: Werke aus den Jahren 1932-1939 (Der Mann Moses und die monotheistische Religion, Warum Krieg?, Die endliche und die unendliche Analyse)",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Sechzehnter Band. Imago Publishing Co., Ltd., London, 1950",
+    "language": "german",
+    "file": "freud/freud-gw-band-xvi.txt"
+  },
+  {
+    "id": "freud-gw-band-xvii",
+    "title": "Gesammelte Werke, Band XVII: Schriften aus dem Nachlass",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Siebzehnter Band. Imago Publishing Co., Ltd., London, 1941",
+    "language": "german",
+    "file": "freud/freud-gw-band-xvii.txt"
+  },
+  {
+    "id": "freud-zur-auffassung-der-aphasien-1891",
+    "title": "Zur Auffassung der Aphasien",
+    "author": "Sigmund Freud",
+    "sourceReference": "Monografía neurológica temprana (1891), anterior y externa a las Gesammelte Werke. Ejemplar digitalizado, University of California",
+    "language": "german",
+    "file": "freud/freud-zur-auffassung-der-aphasien-1891.txt"
   }
 ]
