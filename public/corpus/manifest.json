@@ -38,5 +38,45 @@
     "sourceReference": "Gesammelte Werke, Vierter Band. Imago Publishing Co., Ltd., London",
     "language": "german",
     "file": "freud/freud-gw-band-iv.txt"
+  },
+  {
+    "id": "freud-gw-band-v",
+    "title": "Gesammelte Werke, Band V: Werke aus den Jahren 1904-1905",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Fünfter Band. Imago Publishing Co., Ltd., London, 1942",
+    "language": "german",
+    "file": "freud/freud-gw-band-v.txt"
+  },
+  {
+    "id": "freud-gw-band-vi",
+    "title": "Gesammelte Werke, Band VI: Der Witz und seine Beziehung zum Unbewussten",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Sechster Band. Imago Publishing Co., Ltd., London, 1940",
+    "language": "german",
+    "file": "freud/freud-gw-band-vi.txt"
+  },
+  {
+    "id": "freud-gw-band-vii",
+    "title": "Gesammelte Werke, Band VII: Werke aus den Jahren 1906-1909",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Siebenter Band. Imago Publishing Co., Ltd., London, 1941",
+    "language": "german",
+    "file": "freud/freud-gw-band-vii.txt"
+  },
+  {
+    "id": "freud-gw-band-viii",
+    "title": "Gesammelte Werke, Band VIII: Werke aus den Jahren 1909-1913",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Achter Band. Imago Publishing Co., Ltd., London, 1943",
+    "language": "german",
+    "file": "freud/freud-gw-band-viii.txt"
+  },
+  {
+    "id": "freud-gw-band-ix",
+    "title": "Gesammelte Werke, Band IX: Totem und Tabu",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Neunter Band. Imago Publishing Co., Ltd., London, 1940",
+    "language": "german",
+    "file": "freud/freud-gw-band-ix.txt"
   }
 ]
