@@ -83,6 +83,15 @@ export interface CustomUploadedExcerpt {
   uploadedAt: number;
 }
 
+export interface SeededLibraryText {
+  id: string;
+  title: string;
+  author: 'Sigmund Freud' | 'Jacques Lacan' | 'Otro / Mixto';
+  sourceReference: string;
+  language: 'french' | 'german' | 'spanish' | 'mixed';
+  file: string; // ruta relativa dentro de public/corpus/, ej. "lacan/seminaire-xxiii.txt"
+}
+
 export interface LocalCorpusFile {
   id: string;
   name: string;

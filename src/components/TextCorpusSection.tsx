@@ -31,9 +31,10 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { TEXTS_DATA, STAFERLA_LACAN_CATALOG, FREUD_GW_CATALOG } from '../data/textsData';
-import { PrimaryTextItem, CorpusRepositoryItem, CustomUploadedExcerpt, ReadingBookmark, LocalCorpusFile } from '../types';
+import { PrimaryTextItem, CorpusRepositoryItem, CustomUploadedExcerpt, ReadingBookmark, LocalCorpusFile, SeededLibraryText } from '../types';
 import { getAllLocalFiles, saveLocalFile, deleteLocalFile, clearAllLocalFiles, StoredLocalFile } from '../utils/dbStorage';
 import { extractTextFromFile } from '../utils/fileExtractor';
+import { fetchCorpusManifest, fetchCorpusText } from '../utils/corpusLibrary';
 
 interface TextCorpusSectionProps {
   onAskInChat: (query: string) => void;
@@ -41,7 +42,28 @@ interface TextCorpusSectionProps {
 
 export const TextCorpusSection: React.FC<TextCorpusSectionProps> = ({ onAskInChat }) => {
   // Main Navigation Tab
-  const [activeTab, setActiveTab] = useState<'local_files' | 'repositories' | 'bookmarks' | 'canonical'>('local_files');
+  const [activeTab, setActiveTab] = useState<'library' | 'local_files' | 'repositories' | 'bookmarks' | 'canonical'>('library');
+
+  // Repository Library State (static texts bundled with the app, shared across all users/devices)
+  const [libraryTexts, setLibraryTexts] = useState<SeededLibraryText[]>([]);
+  const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
+  const [libraryError, setLibraryError] = useState<string | null>(null);
+  const [loadingLibraryId, setLoadingLibraryId] = useState<string | null>(null);
+  const [libraryAuthorFilter, setLibraryAuthorFilter] = useState<'all' | 'Sigmund Freud' | 'Jacques Lacan'>('all');
+  const [librarySearch, setLibrarySearch] = useState('');
+
+  const loadLibraryManifest = () => {
+    setIsLoadingLibrary(true);
+    setLibraryError(null);
+    fetchCorpusManifest()
+      .then((entries) => setLibraryTexts(entries))
+      .catch(() => setLibraryError('No se pudo cargar el manifest de la biblioteca del repositorio.'))
+      .finally(() => setIsLoadingLibrary(false));
+  };
+
+  useEffect(() => {
+    loadLibraryManifest();
+  }, []);
   
   // Local PC Files State (Stored in IndexedDB for unlimited capacity)
   const [localFiles, setLocalFiles] = useState<LocalCorpusFile[]>([]);
@@ -416,6 +438,39 @@ Wenn wir annehmen, dass alles Lebende aus inneren Gründen stirbt, ins Anorganis
     showNotification(`Preparado para cargar archivo de: ${item.title}`);
   };
 
+  // Load a text bundled in public/corpus/ into the workstation editor (fetched on demand)
+  const handleOpenLibraryText = async (entry: SeededLibraryText) => {
+    setLoadingLibraryId(entry.id);
+    setLibraryError(null);
+    try {
+      const text = await fetchCorpusText(entry);
+      setActiveTab('local_files');
+      setActiveLocalFileId(null);
+      setCustomTitle(entry.title);
+      setCustomAuthor(entry.author);
+      setCustomSourceRef(entry.sourceReference);
+      setRawText(text);
+      setAnalysisResult(null);
+      showNotification(`«${entry.title}» cargado desde la biblioteca del repositorio.`);
+    } catch (err: any) {
+      setLibraryError(err?.message || `No se pudo abrir "${entry.title}".`);
+    } finally {
+      setLoadingLibraryId(null);
+    }
+  };
+
+  const filteredLibraryTexts = libraryTexts.filter((entry) => {
+    if (libraryAuthorFilter !== 'all' && entry.author !== libraryAuthorFilter) return false;
+    if (librarySearch.trim()) {
+      const q = librarySearch.toLowerCase();
+      return (
+        entry.title.toLowerCase().includes(q) ||
+        entry.sourceReference.toLowerCase().includes(q)
+      );
+    }
+    return true;
+  });
+
   const filteredCanonicalTexts = TEXTS_DATA.filter((item) =>
     selectedAuthor === 'all' ? true : item.author === selectedAuthor
   );
@@ -486,6 +541,18 @@ Wenn wir annehmen, dass alles Lebende aus inneren Gründen stirbt, ins Anorganis
         {/* Navigation Mode Tabs */}
         <div className="flex flex-wrap items-center gap-1.5 bg-neutral-100 p-1 border border-black/10 rounded-sm">
           <button
+            onClick={() => setActiveTab('library')}
+            className={`px-3 py-2 text-xs font-sans uppercase tracking-wider font-semibold transition-all flex items-center gap-1.5 ${
+              activeTab === 'library'
+                ? 'bg-black text-white shadow-sm'
+                : 'text-black/60 hover:text-black'
+            }`}
+          >
+            <Database className="w-3.5 h-3.5" />
+            <span>Biblioteca del Repositorio ({libraryTexts.length})</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('local_files')}
             className={`px-3 py-2 text-xs font-sans uppercase tracking-wider font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'local_files'
@@ -534,6 +601,146 @@ Wenn wir annehmen, dass alles Lebende aus inneren Gründen stirbt, ins Anorganis
           </button>
         </div>
       </div>
+
+      {/* ================= TAB 0: REPOSITORY LIBRARY (STATIC CORPUS SHARED IN THE CLOUD) ================= */}
+      {activeTab === 'library' && (
+        <div className="space-y-6 animate-fadeIn">
+          <div className="bg-[#FAF8F5] border border-black/10 p-6 sm:p-8 space-y-4">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="space-y-1 max-w-3xl">
+                <h3 className="font-serif text-2xl font-bold text-black">
+                  Biblioteca del Repositorio (Corpus de Dominio Público)
+                </h3>
+                <p className="text-xs sm:text-sm font-sans text-black/75 leading-relaxed">
+                  Textos empaquetados junto con la aplicación en <code className="font-mono bg-neutral-100 px-1">public/corpus/</code>: quedan disponibles para cualquier navegador o dispositivo sin volver a subirlos. A diferencia de tus archivos de PC (guardados solo en este navegador), esta biblioteca viaja con el propio código del proyecto y se sirve igual en cada deploy o remix.
+                </p>
+              </div>
+
+              <button
+                onClick={loadLibraryManifest}
+                disabled={isLoadingLibrary}
+                className="px-4 py-2.5 bg-black text-white text-xs font-sans font-bold uppercase tracking-wider hover:opacity-80 transition-all flex items-center gap-2 self-start lg:self-auto disabled:opacity-50"
+              >
+                {isLoadingLibrary ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
+                <span>Actualizar Biblioteca</span>
+              </button>
+            </div>
+
+            {/* Author Filter & Search */}
+            <div className="pt-4 border-t border-black/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-xs font-sans">
+                <button
+                  onClick={() => setLibraryAuthorFilter('all')}
+                  className={`px-3 py-1.5 border transition-all ${
+                    libraryAuthorFilter === 'all'
+                      ? 'bg-black text-white border-black font-bold'
+                      : 'bg-white text-black/70 border-black/15 hover:border-black'
+                  }`}
+                >
+                  Todos ({libraryTexts.length})
+                </button>
+                <button
+                  onClick={() => setLibraryAuthorFilter('Jacques Lacan')}
+                  className={`px-3 py-1.5 border transition-all ${
+                    libraryAuthorFilter === 'Jacques Lacan'
+                      ? 'bg-black text-white border-black font-bold'
+                      : 'bg-white text-black/70 border-black/15 hover:border-black'
+                  }`}
+                >
+                  Lacan Staferla ({libraryTexts.filter((t) => t.author === 'Jacques Lacan').length})
+                </button>
+                <button
+                  onClick={() => setLibraryAuthorFilter('Sigmund Freud')}
+                  className={`px-3 py-1.5 border transition-all ${
+                    libraryAuthorFilter === 'Sigmund Freud'
+                      ? 'bg-black text-white border-black font-bold'
+                      : 'bg-white text-black/70 border-black/15 hover:border-black'
+                  }`}
+                >
+                  Freud GW ({libraryTexts.filter((t) => t.author === 'Sigmund Freud').length})
+                </button>
+              </div>
+
+              <div className="relative sm:w-80">
+                <Search className="w-4 h-4 text-black/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Filtrar biblioteca del repositorio..."
+                  value={librarySearch}
+                  onChange={(e) => setLibrarySearch(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 bg-white border border-black/15 text-xs font-sans text-black focus:outline-none focus:border-black"
+                />
+              </div>
+            </div>
+          </div>
+
+          {libraryError && (
+            <div className="p-4 bg-red-50 border border-red-200 text-xs text-red-700 font-sans flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <span>{libraryError}</span>
+            </div>
+          )}
+
+          {filteredLibraryTexts.length === 0 ? (
+            <div className="p-12 text-center bg-white border border-black/10 space-y-3">
+              <Database className="w-8 h-8 text-black/30 mx-auto" />
+              <h4 className="font-serif font-bold text-lg text-black">
+                {libraryTexts.length === 0
+                  ? 'Todavía no hay textos empaquetados en el repositorio'
+                  : 'No hay resultados para ese filtro'}
+              </h4>
+              <p className="text-xs font-sans text-black/60 max-w-md mx-auto">
+                {libraryTexts.length === 0 ? (
+                  <>
+                    Agregá archivos <code className="font-mono">.txt</code> en{' '}
+                    <code className="font-mono">public/corpus/</code> y registralos en{' '}
+                    <code className="font-mono">public/corpus/manifest.json</code> (ver el{' '}
+                    <code className="font-mono">README.md</code> de esa carpeta) para que aparezcan
+                    acá automáticamente en cada deploy.
+                  </>
+                ) : (
+                  'Probá con otro autor o término de búsqueda.'
+                )}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filteredLibraryTexts.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="bg-white border border-black/10 p-6 flex flex-col justify-between space-y-4 hover:border-black transition-all shadow-sm"
+                >
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono px-2 py-0.5 bg-neutral-100 text-black font-bold border border-black/10 inline-block">
+                      {entry.author === 'Sigmund Freud' ? 'FREUD // GW' : entry.author === 'Jacques Lacan' ? 'LACAN // STAFERLA' : 'MIXTO'}
+                    </span>
+                    <h4 className="font-serif font-bold text-base text-black">{entry.title}</h4>
+                    <p className="text-xs font-mono text-black/50">{entry.sourceReference}</p>
+                  </div>
+
+                  <button
+                    onClick={() => handleOpenLibraryText(entry)}
+                    disabled={loadingLibraryId === entry.id}
+                    className="text-xs font-sans font-bold uppercase tracking-wider text-black hover:opacity-70 flex items-center gap-1.5 self-start disabled:opacity-40"
+                  >
+                    {loadingLibraryId === entry.id ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>Cargando...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Abrir en Área de Trabajo</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ================= TAB 1: LOCAL PC FILES & EXEGESIS ================= */}
       {activeTab === 'local_files' && (
