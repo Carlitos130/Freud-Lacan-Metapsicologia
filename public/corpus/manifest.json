@@ -78,5 +78,13 @@
     "sourceReference": "Gesammelte Werke, Neunter Band. Imago Publishing Co., Ltd., London, 1940",
     "language": "german",
     "file": "freud/freud-gw-band-ix.txt"
+  },
+  {
+    "id": "freud-gw-band-xiv",
+    "title": "Gesammelte Werke, Band XIV: Werke aus den Jahren 1925-1931",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Vierzehnter Band. Imago Publishing Co., Ltd., London, 1948",
+    "language": "german",
+    "file": "freud/freud-gw-band-xiv.txt"
   }
 ]
