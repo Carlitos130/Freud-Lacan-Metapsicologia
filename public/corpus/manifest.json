@@ -80,6 +80,46 @@
     "file": "lacan/lacan-seminaire-10-langoisse.md"
   },
   {
+    "id": "lacan-seminaire-11",
+    "title": "Le Séminaire XI: Les quatre concepts fondamentaux de la psychanalyse (1963-1964)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-11-les-quatre-concepts-fondamentaux.md"
+  },
+  {
+    "id": "lacan-seminaire-12",
+    "title": "Le Séminaire XII: Problèmes cruciaux pour la psychanalyse (1964-1965)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-12-problemes-cruciaux.md"
+  },
+  {
+    "id": "lacan-seminaire-13",
+    "title": "Le Séminaire XIII: L'objet de la psychanalyse (1965-1966)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-13-lobjet-de-la-psychanalyse.md"
+  },
+  {
+    "id": "lacan-seminaire-14",
+    "title": "Le Séminaire XIV: La logique du fantasme (1966-1967)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-14-logique-du-fantasme.md"
+  },
+  {
+    "id": "lacan-seminaire-15",
+    "title": "Le Séminaire XV: L'acte psychanalytique (1967-1968)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-15-lacte-psychanalytique.md"
+  },
+  {
     "id": "freud-aus-den-anfaengen-der-psychoanalyse",
     "title": "Aus den Anfängen der Psychoanalyse: Briefe an Wilhelm Fliess (1887-1902)",
     "author": "Sigmund Freud",
