@@ -40,6 +40,46 @@
     "file": "lacan/lacan-seminaire-05-les-formations-de-linconscient.md"
   },
   {
+    "id": "lacan-seminaire-06",
+    "title": "Le Séminaire VI: Le désir et son interprétation (1958-1959)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-06-le-desir-et-son-interpretation.md"
+  },
+  {
+    "id": "lacan-seminaire-07",
+    "title": "Le Séminaire VII: L'éthique de la psychanalyse (1959-1960)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-07-lethique-de-la-psychanalyse.md"
+  },
+  {
+    "id": "lacan-seminaire-08",
+    "title": "Le Séminaire VIII: Le transfert (1960-1961)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-08-le-transfert.md"
+  },
+  {
+    "id": "lacan-seminaire-09",
+    "title": "Le Séminaire IX: L'identification (1961-1962)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-09-lidentification.md"
+  },
+  {
+    "id": "lacan-seminaire-10",
+    "title": "Le Séminaire X: L'angoisse (1962-1963)",
+    "author": "Jacques Lacan",
+    "sourceReference": "Staferla, transcription critique",
+    "language": "french",
+    "file": "lacan/lacan-seminaire-10-langoisse.md"
+  },
+  {
     "id": "freud-aus-den-anfaengen-der-psychoanalyse",
     "title": "Aus den Anfängen der Psychoanalyse: Briefe an Wilhelm Fliess (1887-1902)",
     "author": "Sigmund Freud",
