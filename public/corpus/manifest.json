@@ -80,6 +80,38 @@
     "file": "freud/freud-gw-band-ix.txt"
   },
   {
+    "id": "freud-gw-band-x",
+    "title": "Gesammelte Werke, Band X: Werke aus den Jahren 1913-1917 (Triebe und Triebschicksale, Zur Einführung des Narzissmus)",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Zehnter Band. Imago Publishing Co., Ltd., London, 1946",
+    "language": "german",
+    "file": "freud/freud-gw-band-x.txt"
+  },
+  {
+    "id": "freud-gw-band-xi",
+    "title": "Gesammelte Werke, Band XI: Vorlesungen zur Einführung in die Psychoanalyse",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Elfter Band. Imago Publishing Co., Ltd., London, 1940",
+    "language": "german",
+    "file": "freud/freud-gw-band-xi.txt"
+  },
+  {
+    "id": "freud-gw-band-xii",
+    "title": "Gesammelte Werke, Band XII: Werke aus den Jahren 1917-1920",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Zwölfter Band. Imago Publishing Co., Ltd., London, 1947",
+    "language": "german",
+    "file": "freud/freud-gw-band-xii.txt"
+  },
+  {
+    "id": "freud-gw-band-xiii",
+    "title": "Gesammelte Werke, Band XIII: Jenseits des Lustprinzips / Massenpsychologie und Ich-Analyse / Das Ich und das Es",
+    "author": "Sigmund Freud",
+    "sourceReference": "Gesammelte Werke, Dreizehnter Band. Imago Publishing Co., Ltd., London, 1940",
+    "language": "german",
+    "file": "freud/freud-gw-band-xiii.txt"
+  },
+  {
     "id": "freud-gw-band-xiv",
     "title": "Gesammelte Werke, Band XIV: Werke aus den Jahren 1925-1931",
     "author": "Sigmund Freud",
