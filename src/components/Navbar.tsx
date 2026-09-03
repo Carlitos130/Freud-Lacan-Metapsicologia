@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-  MessageSquareQuote, 
-  BookOpen, 
-  Library, 
-  Layers, 
-  GitCompare 
+import {
+  MessageSquareQuote,
+  BookOpen,
+  Library,
+  Layers,
+  GitCompare
 } from 'lucide-react';
+import { AuthWidget } from './AuthWidget';
 
 interface NavbarProps {
   activeTab: 'chat' | 'glossary' | 'texts' | 'topology' | 'compare';
@@ -17,6 +18,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <header className="bg-[#FDFBF7] border-b border-black/10 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-6 pb-4">
+        <div className="flex justify-end mb-2">
+          <AuthWidget />
+        </div>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           {/* Brand & Masthead Title */}
           <div className="flex flex-col">

@@ -1,8 +1,11 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import { GoogleGenAI } from '@google/genai';
 import { createServer as createViteServer } from 'vite';
+import authRouter from './server/routes-auth';
+import { requireCredits, debitCredits } from './server/credits';
 
 dotenv.config();
 
@@ -11,6 +14,8 @@ const PORT = 3000;
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(cookieParser());
+app.use('/api/auth', authRouter);
 
 // Lazy initializer for GoogleGenAI
 function getGenAIClient(): GoogleGenAI {
@@ -261,7 +266,7 @@ async function generateContentWithFallback(
 }
 
 // Endpoint: Chat Stream (Server-Sent Events)
-app.post('/api/psychoanalysis/chat-stream', async (req, res) => {
+app.post('/api/psychoanalysis/chat-stream', requireCredits('dialogo_analitico'), async (req, res) => {
   try {
     const { message, history = [], contextFocus = 'general' } = req.body;
 
@@ -316,6 +321,12 @@ app.post('/api/psychoanalysis/chat-stream', async (req, res) => {
       if (textChunk) {
         res.write(`data: ${JSON.stringify({ text: textChunk })}\n\n`);
       }
+    }
+
+    if (req.sessionUser) {
+      debitCredits(req.sessionUser.id, 'dialogo_analitico').catch((err) =>
+        console.error('[credits] No se pudo debitar dialogo_analitico:', err?.message || err)
+      );
     }
 
     res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
@@ -395,7 +406,7 @@ Estructura tu análisis de forma exhaustiva con:
 });
 
 // Endpoint: Analyze imported text fragment (Staferla / Freud GW / Custom Upload)
-app.post('/api/psychoanalysis/analyze-corpus-text', async (req, res) => {
+app.post('/api/psychoanalysis/analyze-corpus-text', requireCredits('exegesis_ai'), async (req, res) => {
   try {
     const { rawText, sourceTitle, author, sourceReference, focus } = req.body;
 
@@ -433,6 +444,12 @@ Realiza una disección analítica estructurada:
       PSYCHOANALYSIS_SYSTEM_INSTRUCTION,
       0.6
     );
+
+    if (req.sessionUser) {
+      debitCredits(req.sessionUser.id, 'exegesis_ai').catch((err) =>
+        console.error('[credits] No se pudo debitar exegesis_ai:', err?.message || err)
+      );
+    }
 
     res.json({
       success: true,
